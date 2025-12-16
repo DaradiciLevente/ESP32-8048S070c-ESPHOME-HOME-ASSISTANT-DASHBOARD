@@ -56,7 +56,7 @@ The project provides a modern, clear, and highly readable interface for monitori
 
 ## 📸 Screenshots
 
-<img width="800" height="480" alt="dashboard_bg" src="https://github.com/user-attachments/assets/39e5d503-3311-40bc-8a5b-1f58e03e3614" />
+![IMG_20251216_213325006_HDR](https://github.com/user-attachments/assets/f508c554-762a-4351-b67d-01d055618fc6)
 
 ---
 
