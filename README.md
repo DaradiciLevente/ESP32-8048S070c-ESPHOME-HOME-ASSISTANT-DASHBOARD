@@ -52,6 +52,28 @@ The project provides a modern, clear, and highly readable interface for monitori
 ### ☁️ Weather condition
 - `weather.forecast_home`  
 
+## 📂 Fonts
+
+This project uses custom fonts for clarity and diacritic support:
+- `OpenSans-Regular.ttf`
+- `Roboto-Bold.ttf`
+
+They are included in the `/fonts` folder.  
+Copy them into your ESPHome configuration directory before compiling.
+
+---
+
+## 🚀 Installation & Usage
+
+```bash
+# Clone this repository
+git clone https://github.com/DaradiciLevente/ESP32-8048S070c-ESPHOME-HOME-ASSISTANT-DASHBOARD.git
+
+# Copy the YAML configuration files into your ESPHome setup
+# Place the fonts (OpenSans-Regular.ttf, Roboto-Bold.ttf) from the /fonts folder into your ESPHome directory
+# Flash the firmware to the Sunton ESP32-S3 8048S070 board
+# Ensure all Home Assistant entities listed above are available
+
 ---
 
 ## 📸 Screenshots
