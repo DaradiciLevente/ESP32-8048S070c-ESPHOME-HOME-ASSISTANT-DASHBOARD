@@ -1,0 +1,123 @@
+esphome:
+  name: sunton-esp32-8048s070
+  friendly_name: sunton-esp32-8048s070
+  platformio_options:
+    build_flags: "-DBOARD_HAS_PSRAM"
+    board_build.esp-idf.memory_type: qio_opi
+    board_build.flash_mode: dio
+    board_upload.maximum_ram_size: 524288
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  flash_size: 16MB
+  partitions: "default_16MB.csv"
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: y
+      CONFIG_ESP32S3_DATA_CACHE_64KB: y
+      CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
+      CONFIG_SPIRAM_RODATA: y
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+    password: "a07ce4750cc57b5360162ba12f209d3f"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Sunton-Esp32-8048S070"
+    password: "12345678"
+
+captive_portal:
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/clydebarrow/esphome
+      ref: dev
+    components: [lvgl]
+
+output:
+  - platform: ledc
+    pin: 2
+    frequency: 1220
+    id: gpio_backlight_pwm
+
+light:
+  - platform: monochromatic
+    output: gpio_backlight_pwm
+    id: back_light
+    restore_mode: ALWAYS_ON
+
+display:
+  - platform: rpi_dpi_rgb
+    id: main_display
+    color_order: RGB
+    invert_colors: true
+    update_interval: 100ms
+    auto_clear_enabled: false
+    dimensions:
+      width: 800
+      height: 480
+    de_pin: 41
+    hsync_pin: 39
+    vsync_pin: 40
+    pclk_pin: 42
+    pclk_frequency: 12MHz
+    hsync_front_porch: 210
+    hsync_pulse_width: 30
+    hsync_back_porch: 16
+    vsync_front_porch: 22
+    vsync_pulse_width: 13
+    vsync_back_porch: 10
+    data_pins:
+      red: [14, 21, 47, 48, 45]
+      green: [9, 46, 3, 8, 16, 1]
+      blue: [15, 7, 6, 5, 4]
+
+i2c:
+  sda: 19
+  scl: 20
+  scan: true
+  frequency: 400kHz
+
+touchscreen:
+  - platform: gt911
+    id: my_touchscreen
+    update_interval: 50ms
+
+lvgl:
+  displays:
+    - main_display
+  touchscreens:
+    - my_touchscreen
+
+  widgets:
+    - button:
+        id: my_button
+        x: 100
+        y: 100
+        width: 200
+        height: 80
+
+    - slider:
+        id: volume_slider
+        x: 100
+        y: 220
+        width: 400
+        height: 40
+        min_value: 0
+        max_value: 100
+        value: 50
