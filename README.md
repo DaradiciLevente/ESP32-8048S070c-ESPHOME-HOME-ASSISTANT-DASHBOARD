@@ -136,13 +136,13 @@ esphome run esp32-8048s070c-Dashboard-Final.yaml
 
 Once the ESP32 boots and connects to Wi‑Fi:
 
-Open Home Assistant.
+• Open Home Assistant.
 
-Go to Settings → Devices & Services.
+• Go to Settings → Devices & Services.
 
-Home Assistant will automatically detect the ESPHome device.
+• Home Assistant will automatically detect the ESPHome device.
 
-Click “Configure” and enter the same API password used in the YAML file.
+• Click “Configure” and enter the same API password used in the YAML file.
 
 The dashboard will now appear as a device with entities.
 
@@ -154,23 +154,23 @@ This project exposes a switch entity in Home Assistant that controls the display
 
 You can use it to:
 
-Turn the display ON when motion is detected in the room
+• Turn the display ON when motion is detected in the room
 
-Turn the display OFF at night so it doesn’t disturb sleep
+• Turn the display OFF at night so it doesn’t disturb sleep
 
-Manually toggle the screen from the HA dashboard
+• Manually toggle the screen from the HA dashboard
 
-Integrate it into automations, scenes, or scripts
+• Integrate it into automations, scenes, or scripts
 
 ---
 
 ## Example automation idea:
 
-If any motion sensor in the room detects movement → turn on backlight
+• If any motion sensor in the room detects movement → turn on backlight
 
-If no motion for 30 seconds → turn off backlight
+• If no motion for 30 seconds → turn off backlight
 
-At night (23:00–07:00) → keep backlight off unless manually enabled
+• At night (23:00–07:00) → keep backlight off unless manually enabled
 
 This makes the dashboard behave like a smart, presence‑aware control panel.
 
