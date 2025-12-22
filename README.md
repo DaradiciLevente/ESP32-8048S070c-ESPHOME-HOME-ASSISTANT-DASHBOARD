@@ -69,7 +69,11 @@ Home Assistant → Settings → Devices & Services → Entities → Search → C
 
 Then update the YAML file accordingly:
 ```
-sensor: - platform: homeassistant id: living_temp entity_id: sensor.YOUR_TEMPERATURE_SENSOR
+sensor:
+  - platform: homeassistant
+    id: living_temp
+    entity_id: sensor.YOUR_TEMPERATURE_SENSOR
+
 ```
 
 ---
