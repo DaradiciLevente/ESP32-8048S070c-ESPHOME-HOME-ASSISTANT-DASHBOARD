@@ -1,4 +1,4 @@
-# 📊 ESPHome Smart Energy Dashboard
+<h1 align="center">ESPHome Smart Energy Dashboard</h1>
 
 <p align="center">
   <img src="assets/logo.png" alt="ESP32 Dashboard Logo" width="200"/>
