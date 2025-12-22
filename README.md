@@ -125,6 +125,7 @@ Click “Configure” and enter the same API password used in the YAML file.
 The dashboard will now appear as a device with entities.
 
 💡 Backlight Control (Switch Entity)
+
 This project exposes a switch entity in Home Assistant that controls the display backlight.
 
 You can use it to:
