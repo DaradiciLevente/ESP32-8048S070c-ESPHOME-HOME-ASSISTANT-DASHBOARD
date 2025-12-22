@@ -83,11 +83,22 @@ Make sure to check “Add Python to PATH” during installation.
 📥 3. Clone this project
 ```git clone https://github.com/DaradiciLevente/ESP32-8048S070c-ESPHOME-HOME-ASSISTANT-DASHBOARD.git```
 
-⚙️ 4. Edit dashboard.yaml
-Set your Wi‑Fi credentials and Home Assistant API encryption key.
+⚙️ 4. Configure Wi‑Fi & API keys
+Wi‑Fi credentials are stored in secrets.yaml:
 
+```wifi_ssid: "YOUR_WIFI_NAME"
+wifi_password: "YOUR_WIFI_PASSWORD"
+```
+The OTA / ESPHome API password is inside the main file (esp32-8048s070c-Dashboard-Final.yaml):
+
+```ota:
+  - platform: esphome
+    password: "a07ce4750cc57b5360162ba12f209d3f"
+```
 🔌 5. Flash & run (compile + upload + logs)
-```esphome run dashboard.yaml```
+
+```esphome run esp32-8048s070c-Dashboard-Final.yaml
+```
 
 ---
 ## 📸 Screenshots
