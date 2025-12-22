@@ -91,11 +91,13 @@ Ensure all Home Assistant entities listed above are available
 ## 🎥 Demo Video
 
 [![Watch the video](https://img.youtube.com/vi/c-pyQ2oMEn4/hqdefault.jpg)](https://www.youtube.com/shorts/c-pyQ2oMEn4)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
 [![Watch the video](https://img.youtube.com/vi/t43QJtmb0B8/hqdefault.jpg)](https://www.youtube.com/shorts/t43QJtmb0B8)
-&nbsp;&nbsp;&nbsp;&nbsp; 
-[![Watch the video](https://img.youtube.com/vi/gtcvFPUI4Dc/hqdefault.jpg)](https://youtu.be/gtcvFPUI4Dc?si=7WIGCpXFz2ke18eG
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;
+
+[![Watch the video](https://img.youtube.com/vi/gtcvFPUI4Dc/hqdefault.jpg)](https://youtu.be/gtcvFPUI4Dc?si=7WIGCpXFz2ke18eG)
+
 ---
 
 ## 📄 License
