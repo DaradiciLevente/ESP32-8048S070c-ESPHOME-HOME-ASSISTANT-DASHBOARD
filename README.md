@@ -57,8 +57,10 @@ The project provides a modern, clear, and highly readable interface for monitori
 ### ☁️ Weather condition
 - `weather.forecast_home`
 
-🔹 Important note for all users
+## 🔹 Important note for all users!
+
 This project includes example entity IDs from my own Home Assistant setup.
+
 Every user must replace these entity IDs with the ones from their own Home Assistant server.
 
 To find your entity IDs:
