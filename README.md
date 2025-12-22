@@ -1,7 +1,7 @@
 # 📊 ESPHome Smart Energy Dashboard
 
 <p align="center">
-  <img src="images/logo.png" alt="ESP32 Dashboard Logo" width="200"/>
+  <img src="assets/logo.png" alt="ESP32 Dashboard Logo" width="200"/>
 </p>
 
 
