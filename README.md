@@ -74,6 +74,7 @@ Copy them into your ESPHome configuration directory before compiling.
 
 🐍 1. Install Python 3.11+
 Download for Windows: https://www.python.org/downloads/windows/
+
 Make sure to check “Add Python to PATH” during installation.
 
 📦 2. Install ESPHome
