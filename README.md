@@ -176,6 +176,32 @@ This makes the dashboard behave like a smart, presence‑aware control panel.
 
 ---
 
+## 📁 Examples
+
+The /Examples folder contains several minimal, easy‑to‑understand ESPHome configurations that demonstrate how to use the ESP32‑8048S070C display in the simplest possible way.
+
+### These examples show:
+
+How to initialize the 8048S070C display in ESPHome
+
+How to set up LVGL graphics (basic labels, colors, layouts)
+
+How to handle the touchscreen (touch events, coordinates, button presses)
+
+How to structure a clean ESPHome configuration for display‑based projects
+
+These files are intentionally simple and stripped down, making them ideal for:
+
+beginners who want to understand the basics
+
+developers who want a clean starting point
+
+anyone who wants to experiment with LVGL + ESPHome on this display
+
+If you want to build your own UI or learn how the display works internally, the /Examples folder is the best place to start.
+
+---
+
 ## 📸 Screenshots
 
 ![IMG_20251216_213325006_HDR](https://github.com/user-attachments/assets/f508c554-762a-4351-b67d-01d055618fc6)
