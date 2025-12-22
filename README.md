@@ -57,6 +57,19 @@ The project provides a modern, clear, and highly readable interface for monitori
 ### ☁️ Weather condition
 - `weather.forecast_home`
 
+🔹 Important note for all users
+This project includes example entity IDs from my own Home Assistant setup.
+Every user must replace these entity IDs with the ones from their own Home Assistant server.
+
+To find your entity IDs:
+
+Home Assistant → Settings → Devices & Services → Entities → Search → Copy entity_id
+
+Then update the YAML file accordingly:
+```
+sensor: - platform: homeassistant id: living_temp entity_id: sensor.YOUR_TEMPERATURE_SENSOR
+```
+
 ---
 
 ## 📂 Fonts
