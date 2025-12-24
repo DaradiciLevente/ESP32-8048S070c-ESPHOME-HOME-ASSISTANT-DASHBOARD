@@ -100,8 +100,16 @@ Make sure to check “Add Python to PATH” during installation.
 ## 📦 2. Install ESPHome
 
 ```
-pip install esphome
+pip install esphome==2025.11.0
 ```
+
+OR if you already have it installed upgrade/downgrade to the following version using:
+
+```
+pip install --upgrade esphome==2025.11.0
+```
+
+⚠️ This is the version it was created with!
 
 ## 📥 3. Clone this project
 
