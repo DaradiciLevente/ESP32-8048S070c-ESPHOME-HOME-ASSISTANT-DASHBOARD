@@ -91,6 +91,8 @@ Copy them into your ESPHome configuration directory before compiling.
 
 # 🚀 Quick Start
 
+[![Video demo](https://img.youtube.com/vi/CEPckzUROvE/maxresdefault.jpg)](https://youtu.be/CEPckzUROvE)
+
 ## 🐍 1. Install Python 3.11 or 3.12
 
 Download for Windows: https://www.python.org/downloads/windows/
