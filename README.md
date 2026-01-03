@@ -221,7 +221,7 @@ The /Examples folder contains several minimal, easy‑to‑understand ESPHome co
 
 Added the file esp32-8048s070c-Burgundy.yaml to introduce a new Burgundy-themed variant. 
 
-<img src="assets/burgundy.png" alt="Burgundy color" width="400"/>
+<img src="assets/burgundy.jpg" alt="Burgundy color" width="400"/>
 
 The actual display looks noticeably better than in the attached photo.
 
