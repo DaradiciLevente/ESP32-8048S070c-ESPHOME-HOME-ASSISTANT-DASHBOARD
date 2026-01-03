@@ -226,6 +226,13 @@ Added the file esp32-8048s070c-Burgundy.yaml to introduce a new Burgundy-themed 
 
 The actual display looks noticeably better than in the attached photo.
 
+
+Added the file esp32-8048s070c-Green.yaml to introduce a new Green-themed variant. 
+
+![green](https://github.com/user-attachments/assets/3bfd9931-ede9-469a-a0b2-0330d16ae74b)
+
+
+The actual display looks noticeably better than in the attached photo.
 ---
 
 ## 🎥 Demo Video
