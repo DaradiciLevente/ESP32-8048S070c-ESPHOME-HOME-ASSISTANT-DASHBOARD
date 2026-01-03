@@ -219,18 +219,18 @@ The /Examples folder contains several minimal, easy‑to‑understand ESPHome co
 
 ![IMG_20251216_213325006_HDR](https://github.com/user-attachments/assets/f508c554-762a-4351-b67d-01d055618fc6)
 
-Added the file esp32-8048s070c-Burgundy.yaml to introduce a new Burgundy-themed variant. 
+• Added the file esp32-8048s070c-Burgundy.yaml to introduce a new Burgundy-themed variant. 
 
 ![burgundy](https://github.com/user-attachments/assets/d11f87a3-f07d-439a-b221-6fa85df94db2)
 
 
-The actual display looks noticeably better than in the attached photo.
-
-
-Added the file esp32-8048s070c-Green.yaml to introduce a new Green-themed variant. 
+• Added the file esp32-8048s070c-Green.yaml to introduce a new Green-themed variant. 
 
 ![green](https://github.com/user-attachments/assets/3bfd9931-ede9-469a-a0b2-0330d16ae74b)
 
+• Added the file esp32-8048s070c-Emerald-Green.yaml to introduce a new Emerald-Green-themed variant. 
+
+![IMG_20260103_231212409](https://github.com/user-attachments/assets/09efed44-be9d-4a4f-8666-928b9abf99ad)
 
 The actual display looks noticeably better than in the attached photo.
 ---
