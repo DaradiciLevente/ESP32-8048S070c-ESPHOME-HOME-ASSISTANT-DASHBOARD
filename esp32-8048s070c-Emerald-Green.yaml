@@ -1,0 +1,635 @@
+esphome:
+  name: sunton-esp32-8048s070
+  friendly_name: sunton-esp32-8048s070
+  platformio_options:
+    build_flags: "-DBOARD_HAS_PSRAM"
+    board_build.esp-idf.memory_type: qio_opi
+    board_build.flash_mode: dio
+    board_upload.maximum_ram_size: 524288
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  flash_size: 16MB
+  partitions: "default_16MB.csv"
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: y
+      CONFIG_ESP32S3_DATA_CACHE_64KB: y
+      CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
+      CONFIG_SPIRAM_RODATA: y
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  - platform: esphome
+    password: "a07ce4750cc57b5360162ba12f209d3f"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Sunton-Esp32-8048S070"
+    password: "12345678"
+
+captive_portal:
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/clydebarrow/esphome
+      ref: dev
+    components: [lvgl]
+
+output:
+  - platform: ledc
+    pin: 2
+    frequency: 1220
+    id: gpio_backlight_pwm
+
+    
+light:
+  - platform: monochromatic
+    output: gpio_backlight_pwm
+    id: back_light
+    name: "Display Backlight"
+    restore_mode: ALWAYS_ON
+      
+# --- Imaginea de fundal ---
+image:
+  - file: images/dashboard_bg3.png
+    id: dashboard_bg
+    type: RGB565
+    resize: 800x480
+
+# --- Display principal ---
+display:
+  - platform: rpi_dpi_rgb
+    id: main_display
+    color_order: RGB
+    invert_colors: true
+    update_interval: 100ms
+    dimensions:
+      width: 800
+      height: 480
+    de_pin: 41
+    hsync_pin: 39
+    vsync_pin: 40
+    pclk_pin: 42
+    pclk_frequency: 12MHz
+    hsync_front_porch: 210
+    hsync_pulse_width: 30
+    hsync_back_porch: 16
+    vsync_front_porch: 22
+    vsync_pulse_width: 13
+    vsync_back_porch: 10
+    data_pins:
+      red: [14, 21, 47, 48, 45]
+      green: [9, 46, 3, 8, 16, 1]
+      blue: [15, 7, 6, 5, 4]
+
+# --- Touchscreen ---
+i2c:
+  sda: 19
+  scl: 20
+  scan: true
+  frequency: 400kHz
+
+touchscreen:
+  - platform: gt911
+    id: my_touchscreen
+    update_interval: 50ms
+
+# --- Sursă timp ---
+time:
+  - platform: homeassistant
+    id: ha_time
+
+# --- Fonturi cu diacritice + simboluri ---
+font:
+  - file: "fonts/OpenSans-Regular.ttf"
+    id: opensans_24
+    size: 24
+    glyphs: [
+      " ", "0","1","2","3","4","5","6","7","8","9",
+      ":", ".", ",", "%", "°", "+", "-",
+      "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+      "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+      "ă","â","î","ș","ț","Ă","Â","Î","Ș","Ț"
+    ]
+
+  - file: "fonts/Roboto-Bold.ttf"
+    id: roboto_bold_48
+    size: 48
+    glyphs: [
+      " ", "0","1","2","3","4","5","6","7","8","9",
+      ":", ".", ",", "%", "°", "+", "-",
+      "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+      "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+      "ă","â","î","ș","ț","Ă","Â","Î","Ș","Ț"
+    ]
+
+# --- Senzori din Home Assistant ---
+text_sensor:
+  - platform: homeassistant
+    id: weather_condition
+    entity_id: weather.forecast_home
+
+sensor:
+  - platform: homeassistant
+    id: bme_temp
+    entity_id: sensor.bme280test_bme280_temperature_2
+
+  - platform: homeassistant
+    id: bme_hum
+    entity_id: sensor.bme280test_bme280_humidity_2
+
+  - platform: homeassistant
+    id: bme_press
+    entity_id: sensor.bme280test_bme280_pressure
+
+  - platform: homeassistant
+    id: camera_mare_temp
+    entity_id: sensor.t_h_sensor_6_homerseklet
+
+  - platform: homeassistant
+    id: camera_mare_hum
+    entity_id: sensor.t_h_sensor_6_paratartalom
+
+  - platform: homeassistant
+    id: camera_mica_temp
+    entity_id: sensor.andras_szoba_temperatura
+
+  - platform: homeassistant
+    id: camera_mica_hum
+    entity_id: sensor.andras_szoba_umiditate
+    
+  - platform: homeassistant
+    id: consum_casa_power
+    entity_id: sensor.bidirectional_energy_meter_power_b
+
+  - platform: homeassistant
+    id: productie_power
+    entity_id: sensor.inverter_active_power
+
+  - platform: homeassistant
+    id: putere_activa_power
+    entity_id: sensor.power_meter_active_power
+
+  - platform: homeassistant
+    id: inverter_temp
+    entity_id: sensor.inverter_daily_yield
+
+  - platform: homeassistant
+    id: tensiune_power
+    entity_id: sensor.power_meter_tensiune
+
+  - platform: homeassistant
+    id: curent_power
+    entity_id: sensor.bidirectional_energy_meter_current_b
+
+  - platform: homeassistant
+    id: frecventa_power
+    entity_id: sensor.power_meter_frequency
+
+# --- LVGL ---
+lvgl:
+
+  displays:
+    - main_display
+  touchscreens:
+    - my_touchscreen
+
+  bg_image_src: dashboard_bg
+
+  widgets:
+    # Ceas central
+    - label:
+        id: clock_label
+        text: "00:00"
+        align: CENTER
+        y: -60
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Ziua
+    - label:
+        id: day_label
+        text: "luni"
+        align: CENTER
+        y: -20
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Data
+    - label:
+        id: date_label
+        text: "15 decembrie"
+        align: CENTER
+        y: 0
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Anul
+    - label:
+        id: year_label
+        text: "2025"
+        align: CENTER
+        y: 45
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Meteo - stare
+    - label:
+        id: weather_label
+        text: "Senin"
+        x: 70
+        y: 40
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Meteo - temperatură (font mare)
+    - label:
+        id: weather_temp
+        text: "0.0 °C"
+        x: 70
+        y: 80
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Meteo - umiditate (pe rând separat)
+    - label:
+        id: weather_hum
+        text: "0 %"
+        x: 140
+        y: 130
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Meteo - presiune atmosferică (pe rând separat)
+    - label:
+        id: weather_press
+        text: "0 hPa"
+        x: 80
+        y: 160
+        text_font: opensans_24
+        text_color: 0x049133
+        
+    # Titlu CAMERA MARE (font mic, ca ziua săptămânii)
+    - label:
+        id: camera_mare_label
+        text: "Camera mare"
+        x: 70
+        y: 230
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Temperatura CAMERA MARE (font mare, ca temperatura exterioară)
+    - label:
+        id: camera_mare_temp_label
+        text: "0.0 °C"
+        x: 70
+        y: 250
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Umiditatea CAMERA MARE (font mic)
+    - label:
+        id: camera_mare_hum_label
+        text: "0 %"
+        x: 180
+        y: 290
+        text_font: opensans_24
+        text_color: 0x049133
+        
+    # Titlu CAMERA MICĂ (pe aceeași linie cu CAMERA MARE)
+    - label:
+        id: camera_mica_label
+        text: "Camera mică"
+        x: 580
+        y: 230
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Temperatura CAMERA MICĂ (aceeași linie de temperatură)
+    - label:
+        id: camera_mica_temp_label
+        text: "0.0 °C"
+        x: 590
+        y: 250
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Umiditatea CAMERA MICĂ (aceeași linie de umiditate)
+    - label:
+        id: camera_mica_hum_label
+        text: "0 %"
+        x: 700
+        y: 290
+        text_font: opensans_24  
+        text_color: 0x049133        
+        
+    # Titlu CONSUM CASA 
+    - label:
+        id: consum_casa_label
+        text: "Consum"
+        x: 90
+        y: 360
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Valoare numerică (font mare)
+    - label:
+        id: consum_casa_value
+        text: "0"
+        x: 70
+        y: 390
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Unitatea W (font mic, sub valoare)
+    - label:
+        id: consum_casa_unit
+        text: "W"
+        x: 165
+        y: 435
+        text_font: opensans_24
+        text_color: 0x049133
+        
+    # Titlu PRODUCTIE
+    - label:
+        id: productie_label
+        text: "Producție"
+        x: 260
+        y: 370
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Valoare numerică (font mare)
+    - label:
+        id: productie_value
+        text: "0"
+        x: 260
+        y: 400
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Unitatea W (font mic, sub valoare)
+    - label:
+        id: productie_unit
+        text: "W"
+        x: 345
+        y: 440
+        text_font: opensans_24   
+        text_color: 0x049133        
+
+     # Titlu PUTERE ACTIVA
+    - label:
+        id: putere_activa_label
+        text: "Putere activă"
+        x: 445
+        y: 370
+        text_font: opensans_24
+        text_color: 0x049133
+
+    # Valoare numerică (font mare)
+    - label:
+        id: putere_activa_value
+        text: "0"
+        x: 450
+        y: 400
+        text_font: roboto_bold_48
+        text_color: 0x049133
+
+    # Unitatea W (font mic, sub valoare)
+    - label:
+        id: putere_activa_unit
+        text: "W"
+        x: 585
+        y: 440
+        text_font: opensans_24
+        text_color: 0x049133        
+        
+    # Subtitlu INVERTER (a doua linie, font mic)
+    - label:
+        id: inverter_label
+        text: "Astăzi"
+        x: 660
+        y: 360
+        text_font: opensans_24
+        text_color: 0x049133
+        
+    # Temperatura Inverter (prima linie, font mare, cu simbol și °C)
+    - label:
+        id: inverter_temp_label
+        text: "00"
+        x: 645
+        y: 385
+        text_font: roboto_bold_48
+        text_color: 0x049133
+        
+    - label:
+        id: inverter_temp_label2
+        text: "kWh"
+        x: 700
+        y: 430
+        text_font: opensans_24
+        text_color: 0x049133        
+        
+    # Tensiune (prima linie, font mare)
+    - label:
+        id: tensiune_label
+        text: "0 V"
+        x: 570
+        y: 80
+        text_font: roboto_bold_48
+        text_color: 0x049133
+        
+     # Curent (a doua linie, font mare)
+    - label:
+        id: curent_label
+        text: "0 A"
+        x: 645
+        y: 130
+        text_font: opensans_24
+        text_color: 0x049133
+               
+
+    # Frecvență (a treia linie, font mare)
+    - label:
+        id: frecventa_label
+        text: "0 Hz"
+        x: 630
+        y: 160
+        text_font: opensans_24
+        text_color: 0x049133
+ 
+     # Titlu Rețea electrică
+    - label:
+        id: retea_label
+        text: "Rețea electrică"
+        x: 570
+        y: 40
+        text_font: opensans_24
+        text_color: 0x049133
+        
+# --- Actualizare ceas + meteo ---
+interval:
+  - interval: 1s
+    then:
+      - lambda: |-
+          auto t = id(ha_time).now();
+          if (t.is_valid()) {
+            // Ora și minute
+            char buf[6];
+            sprintf(buf, "%02d:%02d", t.hour, t.minute);
+            lv_label_set_text(id(clock_label), buf);
+
+            // Ziua
+            static const char* zile[] = {"duminică","luni","marți","miercuri","joi","vineri","sâmbătă"};
+            int zi_idx = t.day_of_week;
+            if (zi_idx < 1 || zi_idx > 7) zi_idx = 1;
+            lv_label_set_text(id(day_label), zile[zi_idx - 1]);
+
+            // Data
+            static const char* luni[] = {"ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"};
+            int luna_idx = t.month;
+            if (luna_idx < 1 || luna_idx > 12) luna_idx = 1;
+            char buf2[24];
+            sprintf(buf2, "%02d %s", t.day_of_month, luni[luna_idx - 1]);
+            lv_label_set_text(id(date_label), buf2);
+
+            // Anul
+            char buf3[6];
+            sprintf(buf3, "%04d", t.year);
+            lv_label_set_text(id(year_label), buf3);
+          }
+
+          // Meteo - traducere
+          {
+            std::string condition = id(weather_condition).state;
+            std::string translated;
+            if (condition == "clear-night") translated = "Noapte senină";
+            else if (condition == "sunny") translated = "Senin";
+            else if (condition == "cloudy") translated = "Înnorat";
+            else if (condition == "partlycloudy") translated = "Parțial înnorat";
+            else if (condition == "rainy") translated = "Ploaie";
+            else if (condition == "snowy") translated = "Ninsoare";
+            else if (condition == "fog") translated = "Ceață";
+            else if (condition == "windy") translated = "Vânt";
+            else if (condition == "hail") translated = "Grindină";
+            else if (condition == "lightning") translated = "Furtună cu fulgere";
+            else if (condition == "exceptional") translated = "Vreme extremă";
+            else translated = condition.c_str();
+            lv_label_set_text(id(weather_label), translated.c_str());
+          }
+
+          // Temperatură exterioară
+          if (!isnan(id(bme_temp).state)) {
+            char buf[20];
+            sprintf(buf, "%.1f °C", id(bme_temp).state);
+            lv_label_set_text(id(weather_temp), buf);
+          }
+
+          // Umiditate exterioară
+          if (!isnan(id(bme_hum).state)) {
+            char buf[16];
+            sprintf(buf, "%.0f %%", id(bme_hum).state);
+            lv_label_set_text(id(weather_hum), buf);
+          }
+
+          // Presiune atmosferică
+          if (!isnan(id(bme_press).state)) {
+            char buf[16];
+            sprintf(buf, "%.1f hPa", id(bme_press).state);
+            lv_label_set_text(id(weather_press), buf);
+          }
+
+          // CAMERA MARE - temperatură
+          if (!isnan(id(camera_mare_temp).state)) {
+            char buf[20];
+            sprintf(buf, "%.1f °C", id(camera_mare_temp).state);
+            lv_label_set_text(id(camera_mare_temp_label), buf);
+          }
+
+          // CAMERA MARE - umiditate
+          if (!isnan(id(camera_mare_hum).state)) {
+            char buf[16];
+            sprintf(buf, "%.0f %%", id(camera_mare_hum).state);
+            lv_label_set_text(id(camera_mare_hum_label), buf);
+          }
+
+          // CAMERA MICĂ - temperatură
+          if (!isnan(id(camera_mica_temp).state)) {
+            char buf[20];
+            sprintf(buf, "%.1f °C", id(camera_mica_temp).state);
+            lv_label_set_text(id(camera_mica_temp_label), buf);
+          }
+
+          // CAMERA MICĂ - umiditate
+          if (!isnan(id(camera_mica_hum).state)) {
+            char buf[16];
+            sprintf(buf, "%.0f %%", id(camera_mica_hum).state);
+            lv_label_set_text(id(camera_mica_hum_label), buf);
+          }
+
+          // CONSUM CASA
+          if (!isnan(id(consum_casa_power).state)) {
+            char buf[20];
+            sprintf(buf, "%.0f", id(consum_casa_power).state);
+            lv_label_set_text(id(consum_casa_value), buf);
+            lv_label_set_text(id(consum_casa_unit), "W");
+          }
+
+          // PRODUCTIE
+          if (!isnan(id(productie_power).state)) {
+            char buf[20];
+            sprintf(buf, "%.0f", id(productie_power).state);
+            lv_label_set_text(id(productie_value), buf);
+            lv_label_set_text(id(productie_unit), "W");
+          }
+
+          // PUTERE ACTIVA
+          if (!isnan(id(putere_activa_power).state)) {
+            char buf[20];
+            sprintf(buf, "%.0f", id(putere_activa_power).state);
+            lv_label_set_text(id(putere_activa_value), buf);
+            lv_label_set_text(id(putere_activa_unit), "W");
+          }
+
+          // INVERTER - temperatura internă
+          if (!isnan(id(inverter_temp).state)) {
+            char buf[20];
+            sprintf(buf, "%.1f", id(inverter_temp).state);
+            lv_label_set_text(id(inverter_temp_label), buf);
+            lv_label_set_text(id(inverter_label), "Astăzi");
+          }
+
+          // TENSIUNE
+          if (!isnan(id(tensiune_power).state)) {
+            char buf[20];
+            sprintf(buf, "%.1f V", id(tensiune_power).state);
+            lv_label_set_text(id(tensiune_label), buf);
+          }
+
+          // CURENT
+          if (!isnan(id(curent_power).state)) {
+            char buf[20];
+            sprintf(buf, "%.2f A", id(curent_power).state);
+            lv_label_set_text(id(curent_label), buf);
+          }
+
+          // FRECVENȚĂ
+          if (!isnan(id(frecventa_power).state)) {
+            char buf[20];
+            sprintf(buf, "%.2f Hz", id(frecventa_power).state);
+            lv_label_set_text(id(frecventa_label), buf);
+          }
