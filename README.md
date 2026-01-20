@@ -109,7 +109,9 @@ Recommended version (fully compatible with this project):
 pip install https://github.com/esphome/esphome/archive/refs/heads/dev.zip
 ```
 Deprecated (may cause LVGL build errors):
+
 ~~pip install esphome==2025.11.0~~
+
 ~~pip install --upgrade esphome==2025.11.0~~
 
 
