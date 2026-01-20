@@ -104,26 +104,26 @@ Make sure to check “Add Python to PATH” during installation.
 ## 📦 2. Install ESPHome
 
 
-~~pip install esphome==2025.11.0~~
+Recommended version (fully compatible with this project):
 ```
 pip install https://github.com/esphome/esphome/archive/refs/heads/dev.zip
 ```
-
-OR if you already have it installed upgrade/downgrade to the following version using:
-
-
+Deprecated (may cause LVGL build errors):
+~~pip install esphome==2025.11.0~~
 ~~pip install --upgrade esphome==2025.11.0~~
 
 
-# Update 20 ianuarie 2026
 
-## ⚠️ Troubleshooting (IMPORTANT) If you encounter the following error during compilation:
+# 🛠️ Update — January 20, 2026
+
+## ⚠️ ⚠️ Troubleshooting (IMPORTANT)
+If you encounter the following error during compilation:
 ```
 TypeError: VariableDeclarationExpression.__init__() got an unexpected keyword argument 'static'
 ```
 it means that the installed ESPHome version is not compatible with the external LVGL component.
 
-Solution:
+## ✔️ Solution
 Uninstall ESPHome:
 ```
 pip uninstall esphome -y
