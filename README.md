@@ -113,6 +113,27 @@ OR if you already have it installed upgrade/downgrade to the following version u
 pip install --upgrade esphome==2025.11.0
 ```
 
+
+# Update 20 ianuarie 2026
+
+## ⚠️ Troubleshooting (IMPORTANT) If you encounter the following error during compilation:
+```
+TypeError: VariableDeclarationExpression.__init__() got an unexpected keyword argument 'static'
+```
+it means that the installed ESPHome version is not compatible with the external LVGL component.
+
+Solution:
+Uninstall ESPHome:
+```
+pip uninstall esphome -y
+pip cache purge
+```
+Install the development version (100% compatible with this project):
+```
+pip install https://github.com/esphome/esphome/archive/refs/heads/dev.zip
+```
+This version includes the required fixes for LVGL and works without issues.
+
 ⚠️ This is the version it was created with!
 
 ## 📥 3. Clone this project
