@@ -1,10 +1,12 @@
-<h1 align="center">🎙️ DIY Wyoming Satellite - Raspberry Pi Zero 2W</h1>
+<h1 align="center">ESPHome Smart Energy Dashboard</h1>
 
 <p align="center">
-  <img src="logo.png" alt="" width="200"/>
+  <img src="assets/logo.png" alt="ESP32 Dashboard Logo" width="200"/>
 </p>
 
-This repository provides a step-by-step guide and all necessary configuration files to build a high-performance, standalone voice satellite for Home Assistant using the Wyoming protocol.
+
+An advanced graphical dashboard for the **Sunton ESP32-S3 8048S070** 7" display, built with **ESPHome + LVGL** and integrated with **Home Assistant**.  
+The project provides a modern, clear, and highly readable interface for monitoring household energy consumption, photovoltaic production, inverter parameters, and environmental data.
 
 ---
 
