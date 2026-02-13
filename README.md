@@ -1,7 +1,7 @@
-<h1 align="center">ESPHome Smart Energy Dashboard</h1>
+<h1 align="center">🎙️ DIY Wyoming Satellite - Raspberry Pi Zero 2W</h1>
 
 <p align="center">
-  <img src="[assets/logo.png](https://i.imgur.com/x1PrV35.png)" alt="ESP32 Dashboard Logo" width="200"/>
+  <img src="https://i.imgur.com/x1PrV35.png" alt="" width="200"/>
 </p>
 
 
