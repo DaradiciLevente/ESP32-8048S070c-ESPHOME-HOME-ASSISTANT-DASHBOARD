@@ -1,9 +1,10 @@
 <h1 align="center">🎙️ DIY Wyoming Satellite - Raspberry Pi Zero 2W</h1>
 
 <p align="center">
-  <img src="https://i.imgur.com/x1PrV35.png" alt="" width="200"/>
+  <img src="logo.png" alt="" width="200"/>
 </p>
 
+This repository provides a step-by-step guide and all necessary configuration files to build a high-performance, standalone voice satellite for Home Assistant using the Wyoming protocol.
 
 ---
 
